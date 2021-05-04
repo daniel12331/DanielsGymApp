@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "768886359350",
+    "project_id": "danielsgym-c569d",
+    "storage_bucket": "danielsgym-c569d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768886359350:android:6278b4ddecaf6db70c5f97",
+        "android_client_info": {
+          "package_name": "org.wit.danielsapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "768886359350-u0mr745s87aifto7p45s6hc1nmd0gain.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.wit.danielsapplication",
+            "certificate_hash": "bcae4180cb22fd09c8e57cc4836ab540c9baf285"
+          }
+        },
+        {
+          "client_id": "768886359350-rv5k8m64f3c5cneibk5lmlo5e00fothc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0r1C93GaqlpPckExYUTzz8zfjX5y57ag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "768886359350-rv5k8m64f3c5cneibk5lmlo5e00fothc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
