@@ -56,14 +56,14 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
         }
     }
         private fun LoginUser() {
-
+            //Gets email password that is passed through the edit text
             val email: String = et_email1.text.toString().trim{ it <= ' '}
             val password: String = et_password1.text.toString().trim{it <= ' '}
 
             // Logging in with email and password
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener { task ->
-
+                    //If task is successful follow the method in firestore clas
                     if(task.isSuccessful){
                         FireStore().getUserDetails(this@LoginActivity)
 
@@ -76,7 +76,7 @@ class LoginActivity : AppCompatActivity(), AnkoLogger {
                 }
         }
     fun LogInSuccess(user: User){
-
+// Logs user info and switches activity to -> HomeActivity this is called from the firbase store class
         info(user.firstName)
         info(user.lastName)
         info(user.email)

@@ -1,16 +1,22 @@
 package org.wit.danielsapplication.firestore
-import android.media.RoutingSessionInfo
+
 import android.util.Log
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
+
 import org.wit.danielsapplication.activities.AddSessionActivity
 import org.wit.danielsapplication.activities.LoginActivity
 import org.wit.danielsapplication.activities.RegisterActivity
+import org.wit.danielsapplication.fragments.ListFragment
 import org.wit.danielsapplication.models.Session
 import org.wit.danielsapplication.models.User
 
-class FireStore {
+
+class FireStore : AnkoLogger {
 
     private val mFireStore = FirebaseFirestore.getInstance()
 
@@ -52,9 +58,10 @@ class FireStore {
     fun getUserDetails(activity: android.app.Activity) {
         // here we pass the collection name from which we wants the data
         mFireStore.collection("users")
-            // the document id to get the Fields of user
+            // gets doucments with userid
             .document(getUserID())
             .get()
+
             .addOnSuccessListener { document ->
 
                 Log.i(activity.javaClass.simpleName, document.toString())
@@ -64,11 +71,12 @@ class FireStore {
 
                 when (activity) {
                     is LoginActivity -> {
-                        // Call a function of base activity for transferring the result to it
+                        // Log in Success method in listfragment
                         activity.LogInSuccess(user)
                     }
                 }
             }
+                //Logging failure to get user details
             .addOnFailureListener { e ->
                 Log.e(
                     activity.javaClass.simpleName,
@@ -77,9 +85,13 @@ class FireStore {
                 )
             }
     }
+
+
     fun UploadSessionDetails(activity: AddSessionActivity, sessionInfo: Session){
         mFireStore.collection("sessions")
+                //Creating the document
             .document()
+                // We set a the model in the document and we can use SetOptions to merge it into exisiting data
             .set(sessionInfo, SetOptions.merge())
             .addOnSuccessListener {
                 //Success method from session activity -- Simple print and log
@@ -92,6 +104,53 @@ class FireStore {
                     e
                 )
             }
+        //https://firebase.google.com/docs/database/android/read-and-write
+    }
+
+    fun getSessionDetails(fragment: Fragment){
+        mFireStore.collection("sessions")
+                //method where we can equal the current ID signed in and match it with sessions that they have saved (we get the UID not the "users" pathway)
+            .whereEqualTo("userid", getUserID())
+            .get()
+                // With document we can get the document of the sessions that user id fits current user id
+            .addOnSuccessListener { document ->
+                // Creaitng a arraylist to store multiple sessions that one user might have
+            val sessionlist: ArrayList<Session> = ArrayList()
+                //  https://firebase.google.com/docs/firestore/query-data/get-data
+
+
+                for(i in document.documents){
+
+                    // Whatever "i" inside of documents we make a session out of by using our session model
+                    val session = i.toObject(Session::class.java)
+                    // We assignment an id from the collection to session_id
+                    session!!.session_id = i.id
+
+                    //Adding to array list created above
+                    sessionlist.add(session)
+                }
+
+                //We run code specifically based on the specific fragment in this case ListFragment
+                when(fragment){
+                    is ListFragment ->{
+                        // Passing our list through the method below which will print the list on the recyclerview
+                    fragment.SessionFromFirestore(sessionlist)
+                    }
+                }
+            }
+    }
+
+    fun deleteSession(fragment: ListFragment, sessionID: String){
+        mFireStore.collection("sessions")
+            .document(sessionID)
+            .delete()
+            .addOnSuccessListener {
+                fragment.deleteSuccess()
+            }
+            .addOnFailureListener{
+                info ("Failure to delete session")
+            }
+
     }
 
 }

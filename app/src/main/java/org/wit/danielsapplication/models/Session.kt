@@ -9,5 +9,6 @@ data class Session  (
     val userid: String = "",
     val resource: String = "",
     val time: String = "",
-    val date: String = ""
+    val date: String = "",
+    var session_id: String = ""
 ) : Parcelable

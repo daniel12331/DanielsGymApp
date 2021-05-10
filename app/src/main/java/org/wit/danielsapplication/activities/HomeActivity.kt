@@ -24,7 +24,6 @@ class HomeActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,
-                R.id.navigation_add,
                 R.id.navigation_list
             )
         )
@@ -32,5 +31,7 @@ class HomeActivity : AppCompatActivity() {
 
         navView.setupWithNavController(navController)
     }
+    // https://www.geeksforgeeks.org/fragment-lifecycle-in-android/
+    //Referenced link above, where I learnt more about fragments
 
 }

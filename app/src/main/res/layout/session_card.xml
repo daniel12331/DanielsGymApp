@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:elevation="24dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:id="@+id/edit_session">
+
+
+        <TextView
+            android:id="@+id/resource_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+          />
+
+        <TextView
+            android:id="@+id/time_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/resource_card"
+            />
+        <TextView
+            android:id="@+id/date_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/time_card"
+           />
+
+        <ImageButton
+            android:id="@+id/session_delete"
+            android:layout_width="75dp"
+            android:contentDescription="Delete"
+            android:layout_height="55dp"
+            android:layout_marginStart="320dp"
+            android:src="@drawable/ic_baseline_delete_24"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

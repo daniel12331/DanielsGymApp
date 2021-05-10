@@ -34,4 +34,10 @@
     <string name="hint_time">Time</string>
     <string name="hint_date">Date</string>
 
+    <string name="card_image">Image</string>
+
+    <string name="no_sessions">No Sessions made</string>
+
+    <string name="home1">Please follow the Cov19 rules, it Outdoors: Non contact training only in pods of up to 15 (for example: golf, tennis, horse riding, hunting, Gaelic games, soccer, outdoor basketball).Indoors: Individual training only. No exercise or dance classes (for example: no ballet, gymnastics, basketball, racketball, squash, zumba, drama).There is an exemption for professional and elite sports and approved inter-county Gaelic games.</string>
+
 </resources>

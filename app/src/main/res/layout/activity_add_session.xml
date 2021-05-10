@@ -38,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/Resource"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -49,8 +50,10 @@
                 android:hint="@string/hint_resource"
                 android:textColorHint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
 
                 <EditText
                     android:id="@+id/et_resource"

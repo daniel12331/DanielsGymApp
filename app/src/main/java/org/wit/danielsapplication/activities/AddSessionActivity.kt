@@ -11,17 +11,20 @@ import org.wit.danielsapplication.firestore.FireStore
 import org.wit.danielsapplication.models.Session
 
 class AddSessionActivity : AppCompatActivity(), AnkoLogger {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_session)
 
+        // Verifying that user does not leave anything blank
         btn_add.setOnClickListener {
             when {
                 et_resource.text.toString().isEmpty() -> toast("Please fill in your Resource")
 
-                et_date.text.toString().isEmpty() -> toast("Please fill in your Time")
+                et_date.text.toString().isEmpty() -> toast("Please fill your Date")
 
-                et_time.text.toString().isEmpty() -> toast("Please fill your Date")
+                et_time.text.toString().isEmpty() -> toast("Please Fill in your Time")
 
                 else  -> uploadSessionDetails()
 
@@ -36,12 +39,15 @@ class AddSessionActivity : AppCompatActivity(), AnkoLogger {
                 et_resource.text.toString().trim{it <= ' '},
                 et_time.text.toString().trim{it <= ' '},
                 et_date.text.toString().trim{it <= ' '}
+
             )
 
-        // Sends details to firebase cloud server using session object created above
+        // Passes Params through method created in firebase class
         FireStore().UploadSessionDetails(this, session)
     }
+
     fun UploadSuccess(){
+        // Toast + logs that session was added to firebase successfully + closes the add activity and brings u back to list fragment
         toast("Session was added successful")
         info("Session was added successfully")
         finish()
